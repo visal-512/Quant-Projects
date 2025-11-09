@@ -45,8 +45,6 @@ pip install numpy matplotlib
 
 ## Mathematics Behind the Code
 
-### Simulation:
-
 Consider a unit square in the first quadrant, i.e. for coordinates $(x,y)$:
 
 $$
@@ -67,6 +65,17 @@ p = \mathbb{P}(\text{generating a point inside the circle}) = \frac{A_{circle}}{
 $$
 
 and from this we can see that $\pi \sim 4p$ as $N \rightarrow \infty$.
+
+## Plots for Example
+
+<img width="1964" height="973" alt="Screenshot 2025-11-09 225509" src="https://github.com/user-attachments/assets/d870f8ea-0aa5-44a9-8aa0-9e919e6a80e8" />
+<img width="1589" height="1182" alt="Screenshot 2025-11-09 225534" src="https://github.com/user-attachments/assets/16064e9e-32ec-42a9-98b0-24644872e4f4" />
+
+Above are pictures that demonstrate what the code will produce. The command used to generate this specific setup was:
+```bash
+python simulation.py --limit 500000 --interval 1000 --analysis --reuse
+```
+The simulation gives the value of $\pi\$ to be approximately 3.140648 with an error of ±0.0301%. We can see that the randomly generated points on the graph was then analysed and compared to the Central Limit Theorem and the error points look close enough to the Central Limit Theorem line.
 
 ## References
 
