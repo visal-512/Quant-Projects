@@ -24,6 +24,7 @@ def monte_carlo_pi(simulation_limit, update_interval, seed: int | None = None):
     error_values = 100 * np.abs(pi_estimates - np.pi) / np.pi  # Percent error
 
     # Setup of Plot
+    plt.style.use('dark_background')
     fig, axis = plt.subplots(1, 2, figsize=(10, 5))
     fig.canvas.manager.set_window_title("Monte Carlo Simulation for Estimation of π")
 
