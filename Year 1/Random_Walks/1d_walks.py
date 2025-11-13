@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 import argparse
 
-plt.style.use('dark_background')
+plt.style.use("dark_background")
 
 ## Algorithm for the position after n steps in the walk
 def random_walk_1d(n_steps):
@@ -31,7 +31,7 @@ def plot_walks(num_walks, n_steps):
     single_walk = random_walk_1d(n_steps)
     final_positions = end_positions(num_walks, n_steps)
     # Create plot
-    plt.figure(figsize=(12,6)) # dimensions 12in x 5in
+    plt.figure(figsize=(12,6), num="Random Walks Data Visualisation") # dimensions 12in x 5in
     # Plot the single walk
     plt.subplot(1, 2, 1) # plot the graph on the left
     plt.plot(single_walk, color="#1A80BB") # assign the data values the colour blue
@@ -49,7 +49,7 @@ def plot_walks(num_walks, n_steps):
     # Overlap Normal Distribution Curve
     x_values = np.linspace(min(final_positions), max(final_positions), 250) # creates 250 evenly spaced points from the range of the final_positions
     pdf = norm.pdf(x_values, 0, np.sqrt(n_steps)) # P.D.F. with N(0, √N) for the data from x_values
-    plt.plot(x_values, pdf, color = "#1A80BB", lw = 2.5, label = "N(0, √N)")
+    plt.plot(x_values, pdf, color = "#1A80BB", lw = 2.5, label = "N(0, √N)", alpha = 1.00)
     plt.title(f"Distribution of End Positions of {num_walks} Random Walks")
     plt.xlabel("Final Positions")
     plt.ylabel("Probability Density")
