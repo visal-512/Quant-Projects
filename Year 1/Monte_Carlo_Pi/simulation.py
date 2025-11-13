@@ -5,7 +5,7 @@ from matplotlib.ticker import ScalarFormatter
 import argparse
 
 # Monte Carlo Main Function
-def monte_carlo_pi(simulation_limit, update_interval, seed: int | None = None):
+def monte_carlo_pi(simulation_limit, update_interval, seed):
     
     if seed is not None:
         np.random.seed(seed)
@@ -24,7 +24,7 @@ def monte_carlo_pi(simulation_limit, update_interval, seed: int | None = None):
     error_values = 100 * np.abs(pi_estimates - np.pi) / np.pi  # Percent error
 
     # Setup of Plot
-    plt.style.use('dark_background')
+    plt.style.use("dark_background")
     fig, axis = plt.subplots(1, 2, figsize=(10, 5))
     fig.canvas.manager.set_window_title("Monte Carlo Simulation for Estimation of π")
 
@@ -84,8 +84,7 @@ def monte_carlo_pi(simulation_limit, update_interval, seed: int | None = None):
     return x, y, inside, pi_estimates
 
 # Error Analysis Function
-def error_analysis( seed: int | None = None,
-                   x=None, y=None, inside=None, pi_estimates=None):
+def error_analysis(seed, x, y, inside, pi_estimates):
     
     if seed is not None:
         np.random.seed(seed)
@@ -125,8 +124,8 @@ def error_analysis( seed: int | None = None,
     plt.show()
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Monte Carlo π Estimation Simulation")
+def main():
+    parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=25000, help="Total number of random points to simulate")
     parser.add_argument("--interval", type=int, default=1000, help="Update interval for visualization")
     parser.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility")
@@ -149,3 +148,6 @@ if __name__ == "__main__":
         monte_carlo_pi(simulation_limit=args.limit,
                        update_interval=args.interval,
                        seed=args.seed)
+
+if __name__ == "__main__":
+    main()
