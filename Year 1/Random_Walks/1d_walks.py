@@ -26,17 +26,20 @@ def end_positions(num_walks, n_steps):
     return np.array(final_positions) # return the final positions
 
 ## Plot the graphs
-def plot_walks(num_walks, n_steps):
+def plot_walks(num_walks, n_steps, num_sample_paths):
     # Generate data
-    single_walk = random_walk_1d(n_steps)
+    sample_walks = [random_walk_1d(n_steps) for _ in range(num_sample_paths)]
     final_positions = end_positions(num_walks, n_steps)
     # Create plot
     plt.figure(figsize=(12,6), num="Random Walks Data Visualisation") # dimensions 12in x 5in
     # Plot the single walk
     plt.subplot(1, 2, 1) # plot the graph on the left
-    plt.plot(single_walk, color="#1A80BB") # assign the data values the colour blue
-    plt.title(f"Single 1D Random Walk ({n_steps} steps)")
+    # plot the different walks
+    for i, walk in enumerate(sample_walks):
+        plt.plot(walk, lw=0.75, alpha=0.9, label=f'Walk {i+1}')
+    plt.title(f'{num_sample_paths} Random Walks ({n_steps} steps each)')
     plt.xlabel("# Steps")
+    plt.xlim([0, n_steps])
     plt.ylabel("Position")
     plt.grid(True)
     # Plot the Histogram
@@ -62,10 +65,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--num_walks", type=int, default=1000, help="Number of Random Walks")
     parser.add_argument("--num_steps", type=int, default=2000, help="Number of Steps in Each Walk")
+    parser.add_argument("--sample_walks", type=int, default=5, help="Number of Sample Walks Displayed")
 
     args = parser.parse_args()
     print(f"Simulating {args.num_walks} walks, each with {args.num_steps} steps:")
-    plot_walks(args.num_walks, args.num_steps)
+    plot_walks(args.num_walks, args.num_steps, args.sample_walks)
 
 if __name__ == "__main__":
     main()
